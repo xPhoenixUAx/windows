@@ -1,0 +1,16 @@
+.motion-ready .reveal-on-scroll { opacity: 0; transform: translateY(22px); transition: opacity .64s ease, transform .64s ease; }
+.motion-ready .reveal-on-scroll.is-visible { opacity: 1; transform: none; }
+.motion-ready .hero-copy { animation: pane-rise .78s both; }
+.motion-ready .hero-photograph { animation: pane-unveil .92s both; }
+.motion-ready .site-header { animation: header-arrive .4s both; }
+
+@keyframes pane-rise { from { opacity: 0; transform: translateY(23px); } to { opacity: 1; transform: none; } }
+@keyframes pane-unveil { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes header-arrive { from { opacity: .65; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes services-unfold { from { opacity: 0; transform: translate(-50%, -7px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@keyframes services-expand { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .motion-ready .reveal-on-scroll { opacity: 1; transform: none; }
+}
