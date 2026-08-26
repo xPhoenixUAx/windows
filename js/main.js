@@ -195,15 +195,15 @@
     }
   ];
   var currentPage = window.location.pathname.split("/").pop();
-  var factorIconSheets = {
-    "window-installation-replacement.html": "img/services/factor-icons-installation-sheet-v2.webp",
-    "window-repair.html": "img/services/factor-icons-repair-sheet-v2.webp",
-    "glass-seal-repair.html": "img/services/factor-icons-glass-sheet-v2.webp"
+  var factorIconSets = {
+    "window-installation-replacement.html": "img/services/factor-icon-installation-",
+    "window-repair.html": "img/services/factor-icon-repair-",
+    "glass-seal-repair.html": "img/services/factor-icon-glass-"
   };
-  var reasonIconSheets = {
-    "window-installation-replacement.html": "img/services/reason-icons-installation-sheet-v2.webp",
-    "window-repair.html": "img/services/reason-icons-repair-sheet-v2.webp",
-    "glass-seal-repair.html": "img/services/reason-icons-glass-sheet-v2.webp"
+  var reasonIconSets = {
+    "window-installation-replacement.html": "img/services/reason-icon-installation-",
+    "window-repair.html": "img/services/reason-icon-repair-",
+    "glass-seal-repair.html": "img/services/reason-icon-glass-"
   };
   var contextIcons = {
     "Drafts": "wind",
@@ -275,8 +275,8 @@
     addContextualIcon(heading, "section-heading-icon value-icon");
   });
   document.querySelectorAll(".reason-item h3").forEach(function (heading, index) {
-    var sheetSource = reasonIconSheets[currentPage];
-    if (!sheetSource) {
+    var iconSet = reasonIconSets[currentPage];
+    if (!iconSet) {
       addContextualIcon(heading, "section-heading-icon reason-icon");
       return;
     }
@@ -284,18 +284,18 @@
     var visual = document.createElement("span");
     visual.className = "reason-visual reason-visual--" + (index + 1);
     visual.setAttribute("aria-hidden", "true");
-    var sheet = document.createElement("img");
-    sheet.src = sheetSource;
-    sheet.alt = "";
-    sheet.width = 1536;
-    sheet.height = 1024;
-    sheet.decoding = "async";
-    visual.appendChild(sheet);
+    var icon = document.createElement("img");
+    icon.src = iconSet + (index + 1) + "-v3.webp";
+    icon.alt = "";
+    icon.width = 384;
+    icon.height = 384;
+    icon.decoding = "async";
+    visual.appendChild(icon);
     heading.parentElement.appendChild(visual);
   });
   document.querySelectorAll(".factor-item h3").forEach(function (heading, index) {
-    var sheetSource = factorIconSheets[currentPage];
-    if (!sheetSource) {
+    var iconSet = factorIconSets[currentPage];
+    if (!iconSet) {
       addContextualIcon(heading, "section-heading-icon factor-icon");
       return;
     }
@@ -303,13 +303,13 @@
     var visual = document.createElement("span");
     visual.className = "factor-visual factor-visual--" + (index + 1);
     visual.setAttribute("aria-hidden", "true");
-    var sheet = document.createElement("img");
-    sheet.src = sheetSource;
-    sheet.alt = "";
-    sheet.width = 1536;
-    sheet.height = 1024;
-    sheet.decoding = "async";
-    visual.appendChild(sheet);
+    var icon = document.createElement("img");
+    icon.src = iconSet + (index + 1) + "-v3.webp";
+    icon.alt = "";
+    icon.width = 384;
+    icon.height = 384;
+    icon.decoding = "async";
+    visual.appendChild(icon);
     heading.parentElement.appendChild(visual);
   });
   document.querySelectorAll(".preparation-list > li, .service-checklist > li").forEach(function (item) {
