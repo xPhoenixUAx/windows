@@ -129,7 +129,7 @@
   function createIcon(name, extraClass) {
     var icon = document.createElement("img");
     icon.className = "icon" + (extraClass ? " " + extraClass : "");
-    icon.src = "img/common/icon-" + (rasterIcons[name] || "rosette") + "-generated.png";
+    icon.src = "img/common/icon-" + (rasterIcons[name] || "rosette") + "-generated.webp";
     icon.alt = "";
     icon.width = 56;
     icon.height = 56;
@@ -157,7 +157,7 @@
   document.querySelectorAll(".latch").forEach(function (latch) {
     var hardware = document.createElement("img");
     hardware.className = "latch-image";
-    hardware.src = "img/common/hardware-latch-generated.png";
+    hardware.src = "img/common/hardware-latch-generated.webp";
     hardware.alt = "";
     hardware.width = 144;
     hardware.height = 64;
@@ -192,14 +192,14 @@
   ];
   var currentPage = window.location.pathname.split("/").pop();
   var factorIconSheets = {
-    "window-installation-replacement.html": "img/services/factor-icons-installation-sheet-v2.png",
-    "window-repair.html": "img/services/factor-icons-repair-sheet-v2.png",
-    "glass-seal-repair.html": "img/services/factor-icons-glass-sheet-v2.png"
+    "window-installation-replacement.html": "img/services/factor-icons-installation-sheet-v2.webp",
+    "window-repair.html": "img/services/factor-icons-repair-sheet-v2.webp",
+    "glass-seal-repair.html": "img/services/factor-icons-glass-sheet-v2.webp"
   };
   var reasonIconSheets = {
-    "window-installation-replacement.html": "img/services/reason-icons-installation-sheet-v2.png",
-    "window-repair.html": "img/services/reason-icons-repair-sheet-v2.png",
-    "glass-seal-repair.html": "img/services/reason-icons-glass-sheet-v2.png"
+    "window-installation-replacement.html": "img/services/reason-icons-installation-sheet-v2.webp",
+    "window-repair.html": "img/services/reason-icons-repair-sheet-v2.webp",
+    "glass-seal-repair.html": "img/services/reason-icons-glass-sheet-v2.webp"
   };
   var contextIcons = {
     "Drafts": "wind",
@@ -513,6 +513,7 @@
   var trigger = document.querySelector(".menu-toggle");
   var menu = document.getElementById("mobile-menu");
   var previousFocus;
+  var menuCloseTimer;
 
   if (trigger) {
     var menuMark = trigger.querySelector(".menu-mark");
@@ -582,20 +583,35 @@
 
   function closeMenu(restoreFocus) {
     if (!trigger || !menu) return;
+    window.clearTimeout(menuCloseTimer);
     trigger.setAttribute("aria-expanded", "false");
     trigger.querySelector(".menu-label").textContent = "Menu";
-    menu.hidden = true;
     toggleMobileServices(false, false);
     document.body.classList.remove("menu-is-open");
+    menu.classList.remove("is-open");
+    menu.classList.add("is-closing");
+
+    function finishMenuClose() {
+      if (trigger.getAttribute("aria-expanded") === "true") return;
+      menu.hidden = true;
+      menu.classList.remove("is-closing");
+    }
+
+    if (menu.hidden || window.matchMedia("(prefers-reduced-motion: reduce)").matches) finishMenuClose();
+    else menuCloseTimer = window.setTimeout(finishMenuClose, 370);
     if (restoreFocus && previousFocus) previousFocus.focus();
   }
 
   function openMenu() {
+    window.clearTimeout(menuCloseTimer);
     toggleServicesDropdown(false);
     previousFocus = document.activeElement;
     trigger.setAttribute("aria-expanded", "true");
     trigger.querySelector(".menu-label").textContent = "Close";
     menu.hidden = false;
+    menu.classList.remove("is-closing");
+    menu.getBoundingClientRect();
+    menu.classList.add("is-open");
     document.body.classList.add("menu-is-open");
     var first = menu.querySelector("a, button");
     if (first) first.focus();
@@ -637,6 +653,10 @@
 
   var cookieBanner = document.querySelector(".cookie-banner");
   if (cookieBanner) {
+    var cookieHeading = cookieBanner.querySelector("h2");
+    if (cookieHeading && !cookieHeading.querySelector(".cookie-title-icon")) {
+      prependIcon(cookieHeading, "badge-check", "cookie-title-icon");
+    }
     var storedChoice = null;
     try { storedChoice = localStorage.getItem("window-match-cookie-preference"); } catch (ignore) { /* Storage may be unavailable. */ }
     if (!storedChoice) cookieBanner.hidden = false;

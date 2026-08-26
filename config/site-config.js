@@ -5,7 +5,7 @@
 window.SITE_CONFIG = {
   "brand": "Window Match",
   "company": "Window Match, Inc.",
-  "logo": "img/common/logo-window-match-mark-generated.png",
+  "logo": "img/common/logo-window-match-mark-generated.webp",
   "email": "hello@example.com",
 
   "pageTitles": {

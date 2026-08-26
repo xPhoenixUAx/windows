@@ -236,7 +236,7 @@
   padding: 15px;
   border: 1px solid #110e0a;
   background-color: #211b15;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-position: center;
   background-size: 520px auto;
   box-shadow: inset 0 0 0 4px rgba(12, 9, 6, .72), inset 0 0 0 7px rgba(192, 152, 82, .2), 0 13px 30px rgba(31, 24, 17, .22);
@@ -251,7 +251,7 @@
   padding: clamp(44px, 5vw, 76px);
   border: 1px solid rgba(230, 211, 176, .56);
   background-color: #f5f0e6;
-  background-image: url("../../img/common/texture-frosted-garden-generated.jpg");
+  background-image: url("../../img/common/texture-frosted-garden-generated.webp");
   background-position: center;
   background-size: cover;
   box-shadow: inset 0 0 20px rgba(77, 59, 34, .1);
@@ -331,7 +331,7 @@
   padding: 7px;
   border: 0;
   background-color: #211b15;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-size: 380px auto;
   box-shadow: 0 12px 28px rgba(20, 15, 10, .32);
 }
@@ -375,10 +375,10 @@
   inset: 0;
   z-index: 3;
   background-image:
-    url("../../img/common/texture-patinated-bronze-generated.jpg"),
-    url("../../img/common/texture-patinated-bronze-generated.jpg"),
-    url("../../img/common/texture-patinated-bronze-generated.jpg"),
-    url("../../img/common/texture-patinated-bronze-generated.jpg");
+    url("../../img/common/texture-patinated-bronze-generated.webp"),
+    url("../../img/common/texture-patinated-bronze-generated.webp"),
+    url("../../img/common/texture-patinated-bronze-generated.webp"),
+    url("../../img/common/texture-patinated-bronze-generated.webp");
   background-position: top, bottom, left, right;
   background-size: 100% var(--service-rail), 100% var(--service-sill), 15px 100%, 15px 100%;
   background-repeat: no-repeat;
@@ -414,7 +414,7 @@
 .service-page .service-contact-layout {
   padding: 15px;
   background-color: #241d17;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-position: center;
   background-size: 460px auto;
   box-shadow: 0 14px 28px rgba(42, 31, 21, .18), inset 0 0 0 2px rgba(11, 8, 5, .68);
@@ -572,7 +572,7 @@
   height: 31%;
   padding: 6px;
   border: 0;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-size: 320px auto;
 }
 
@@ -620,7 +620,7 @@
   justify-self: center;
   gap: 12px;
   border: 0;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-position: center;
   background-size: 420px auto;
 }
@@ -690,7 +690,7 @@
 .service-page .factor-visuals {
   height: clamp(220px, 26vw, 350px);
   padding: 7px;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-size: 360px auto;
 }
 
@@ -843,7 +843,7 @@
   height: 160px;
   margin: 17px 0 0 -24px;
   padding: 6px;
-  background-image: url("../../img/common/texture-patinated-bronze-generated.jpg");
+  background-image: url("../../img/common/texture-patinated-bronze-generated.webp");
   background-size: 360px auto;
 }
 
@@ -1028,12 +1028,12 @@
   }
 
   .service-page .service-hero-hardware {
-    top: auto;
-    bottom: calc(50% - 31px);
+    top: calc(18px + min(62vw, 440px));
+    bottom: auto;
     left: 50%;
     width: 90px;
     height: 42px;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -50%);
   }
 
   .service-page .service-section {
