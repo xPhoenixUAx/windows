@@ -111,16 +111,18 @@ $expectedHost = strtolower((string) ($declaredHost !== false && $declaredHost !=
     : ($configuredHost !== '' ? $configuredHost : ($_SERVER['HTTP_HOST'] ?? ''))));
 $origin = (string) ($_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '');
 $fetchSite = strtolower((string) ($_SERVER['HTTP_SEC_FETCH_SITE'] ?? ''));
+$originErrorBrand = safe_text($brandName);
+$originError = 'Requests must be submitted from the ' . ($originErrorBrand !== '' ? $originErrorBrand : 'configured') . ' website.';
 
 if ($origin !== '') {
     $parts = parse_url($origin);
     $originHost = strtolower((string) ($parts['host'] ?? ''));
     $originPort = isset($parts['port']) ? ':' . $parts['port'] : '';
     if ($originHost === '' || !hash_equals($expectedHost, $originHost . $originPort)) {
-        reply(403, false, 'Requests must be submitted from the Window Match website.');
+        reply(403, false, $originError);
     }
 } elseif ($fetchSite !== 'same-origin') {
-    reply(403, false, 'Requests must be submitted from the Window Match website.');
+    reply(403, false, $originError);
 }
 
 if (safe_text($_POST['company_website'] ?? '') !== '') {
@@ -199,11 +201,11 @@ if ($errors !== []) {
 $recipient = getenv('WINDOW_MATCH_FORM_EMAIL');
 $recipient = $recipient !== false && $recipient !== ''
     ? trim($recipient)
-    : trim((string) ($handlerConfig['recipient'] ?? 'requests@example.com'));
+    : trim((string) ($handlerConfig['recipient'] ?? ''));
 $sender = getenv('WINDOW_MATCH_FROM_EMAIL');
 $sender = $sender !== false && $sender !== ''
     ? trim($sender)
-    : trim((string) ($handlerConfig['sender'] ?? 'no-reply@example.com'));
+    : trim((string) ($handlerConfig['sender'] ?? ''));
 
 if (filter_var($recipient, FILTER_VALIDATE_EMAIL) === false || filter_var($sender, FILTER_VALIDATE_EMAIL) === false) {
     reply(503, false, 'Project request email delivery has not been configured correctly.');

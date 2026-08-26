@@ -52,7 +52,7 @@
   var generatedConfigText = {
     siteName: brandName,
     footerDescription: brandName + " helps homeowners organize project requests and explore introductions to independent local providers.",
-    copyrightText: "© " + new Date().getFullYear() + " " + brandName + ". All rights reserved.",
+    copyrightText: "\u00A9 " + new Date().getFullYear() + " " + brandName + ". All rights reserved.",
     aggregatorDisclosure: config.disclaimer
   };
   document.querySelectorAll("[data-config]").forEach(function (element) {
@@ -76,6 +76,10 @@
   }
 
   if (document.body && (brandName !== sourceBrandName || companyName !== sourceCompanyName)) {
+    document.querySelectorAll("meta[content]").forEach(function (element) {
+      element.setAttribute("content", replaceBrandTokens(element.getAttribute("content")));
+    });
+
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     var textNode;
     while ((textNode = walker.nextNode())) {
